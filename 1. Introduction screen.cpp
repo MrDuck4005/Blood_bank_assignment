@@ -49,33 +49,6 @@ void loginRecipient() {
 
 
 
-//Function to handle user registration 
-
-void registerUser() {
-
-	string username, password, category;
-
-	cout << "Enter your username : ";
-	cin >> username;
-
-	cout << "Enter your password : ";
-	cin >> password;
-
-	cout << "Are you a donor or recipient ? (d/r)";
-	cin >> category;
-
-	if (category == "d" || category == "D") {
-		cout << "Registering as donor....\n";
-	}
-	else if (category == "r" || category == "R") {
-		cout << "Registering as recipient....\n";
-	}
-	else {
-		cout << "Invalid category.\n";
-	}
-
-	
-}
 
 
 int main() {
