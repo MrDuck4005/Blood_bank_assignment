@@ -1,0 +1,1 @@
+error001 - infinite looping occours, typically caused by an invalid input

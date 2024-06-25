@@ -1,3 +1,1 @@
-bhum,pitchaya,02222222222,A,1234
-bhum,pitchaya,02222222,a,1234
-bhum,pitch,1111,a,1234
+username1 password1 John Doe 1/1/2000 New Zealand Kiwi male none A 0223334455 yoobee@student.ac.nz 90 city road 

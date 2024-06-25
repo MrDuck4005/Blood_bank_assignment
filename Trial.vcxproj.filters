@@ -21,6 +21,9 @@
     <ClCompile Include="introduction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="header_and_footer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="donors.txt">
@@ -35,6 +38,7 @@
     <Text Include="bookings.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="error_code_chart.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">

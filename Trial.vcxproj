@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="header_and_footer.cpp" />
     <ClCompile Include="introduction.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="bookings.txt" />
     <Text Include="donors.txt" />
+    <Text Include="error_code_chart.txt" />
     <Text Include="recipients.txt" />
     <Text Include="requests.txt" />
   </ItemGroup>

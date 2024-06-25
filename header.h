@@ -6,6 +6,11 @@
 #include <sstream>
 #include <map>
 #include <string>
+#include <vector>
+#include <cctype>
+#include <memory>
+#include <cstdlib>
+#include <regex>
 
 using namespace std;
 
@@ -24,30 +29,57 @@ extern map<string, string> admins;
 
 // Class definitions
 class Donor {
+
 public:
     string firstName;
     string lastName;
-    string contactNo;
+    string dob;
+    string nationality;
+    string ethnicity;
+    string gender;
+    string conditions;
     string bloodGroup;
+    string contactNo;
+    string email;
+    string address;
+    string city;
+    string lastDonationDate;
+    string username;
     string password;
+    string testingReport;
     bool availability;
 
     Donor() : availability(true) {}
+
+    Donor(string n, string c, string a, string h)
+        : firstName(n), contactNo(c), address(a), conditions(h), availability(true) {}
+
+    string getFirstName() const{ return firstName; } 
+    string getContactNo() const{ return contactNo; } 
+    string getAddress() const{ return address; }
+    string getConditions() const {return conditions; } 
+
+    void setContactNo(string c) { contactNo = c; } 
+    void setAddress(string a) { address = a; }
+    void setConditions(string h) { conditions = h; } 
 };
 
 class Recipient {
 public:
-    std::string fullName;
-    std::string username;  // New field
-    std::string contactNo;
-    std::string password;  // New field
-    bool isAdmin;
+    string name;
+    string address;
+    string email;
+    string contactNo;
+    string username;
+    string password;
+    bool validationStatus;
 
-    Recipient()
-        : fullName(""), username(""), contactNo(""), password(""), isAdmin(false) {}
+    Recipient(const string& name = "", const string& address = "", const string& email = "",
+        const string& contactNo = "", const string& username = "", const string& password = "",
+        bool validationStatus = false)
+        : name(name), address(address), email(email), contactNo(contactNo),
+        username(username), password(password), validationStatus(validationStatus) {}
 
-    Recipient(const std::string& name, const std::string& user, const std::string& contact, const std::string& pass, bool admin = false)
-        : fullName(name), username(user), contactNo(contact), password(pass), isAdmin(admin) {}
 };
 
 class Request {
@@ -73,23 +105,68 @@ struct Booking {
     string time;
 };
 
+struct DonationBooking {
+    string fullName;
+    string dob;
+    string recentHealthCondition;
+    string date;
+    string time;
+};
+
+class BookingSystem {
+public:
+    void bookDonationSlot();
+    void viewAllBookings(); // Function to view all bookings
+
+private:
+    std::vector<DonationBooking> bookings;
+
+    bool isSlotAvailable(const std::string& date, const std::string& time);
+    bool isValidTime(const std::string& time);
+    bool isValidDateFormat(const std::string& date);
+    std::string formatWithSlashes(const std::string& date);
+};
+
 // Function prototypes
+int main();
 void loadFiles();
 void registerDonor();
 void registerRecipient();
-void loginDonor();
-void donorMenu(const string& name);
+void donorLogin();
+void recipientLogin();
+void donorMenu();
 void recipientMenu(const string& name);
 void adminMenu();
-void viewDonorInfo();
-void viewRecipientInfo();
-void updateDonorReport();
-void donorReport();
-void reportByBloodGroup();
-void reportByLocation();
+void adminLogin();
+void donateBlood();
+void showBenefits();
+void manageInfo(const char& name);
 void registerMenu();     // Added function prototype
 void loginMenu();        // Added function prototype
 void displayMainMenu();  // Added function prototype
 void loadInitialData();
 
+void viewAllDonors();
+void generateReportByLocation(const std::string& location);
+
+void updateTestingReport();
+void generateDonorReport();
+void generateReportByBloodGroup(const string& bloodGroup);
+void generateRecipientReport();
+void displayRecipient(const Recipient& recipient);
+
+string toLower(string str);
+string capitalize(string str);
+void accessBloodGroup(const vector<Donor>& donorList);
+void accessByBloodGroupAndLocation(const vector<Donor>& donorList);
+void findPotentialDonors(const vector<Donor>& donorList);
+
+
+//header and footers
+int header();
+
+
 #endif // HEADER_H
+
+
+
