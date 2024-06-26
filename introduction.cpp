@@ -33,7 +33,7 @@ vector<Donor> loadDonorDatabase(const string& filename) {
     vector<Donor> donorDatabase;
     ifstream inFile(filename);
     if (!inFile.is_open()) {
-        cerr << "Unable to open file " << filename << endl;
+        cerr << "error 002! Unable to open file " << filename << endl;
         return donorDatabase;
     }
 
@@ -395,9 +395,6 @@ bloodgroup_menu:
             goto  bloodgroup_menu;
         }
 
-
- 
-
     cout << "Enter contact number: ";
     getline(cin, donor.contactNo);
 
@@ -420,10 +417,10 @@ bloodgroup_menu:
     ofstream outFile("donors.txt", ios::app);
     if (outFile.is_open()) {
         outFile << donor.username << " " << donor.password << " " << donor.firstName << " " << donor.lastName << " " << donor.dob << " " << donor.nationality << " " << donor.ethnicity << " " << donor.gender << " " << donor.conditions << " " << donor.bloodGroup << " " << donor.contactNo << " " << donor.email << " " << donor.address << " " << donor.lastDonationDate << endl;
-        cout << "Donor information saved to donor.txt" << endl;
+        cout << "Donor information saved to donors.txt" << endl;
     }
     else {
-        cout << "Unable to open file." << endl;
+        cout << "Error 003 Unable to open file." << endl;
     }
 
     cout << "Donor registered successfully!" << endl;
@@ -464,7 +461,7 @@ void registerRecipient() {
         cout << "Recipient registered successfully!" << endl;
     }
     else {
-        cout << "Unable to open file." << endl;
+        cout << "Error 004! Unable to open file." << endl;
     }
 }
 
@@ -503,7 +500,7 @@ void donorLogin() {
         }
     }
     else {
-        cout << "Unable to open file." << endl;
+        cout << "Error 002! Unable to open file." << endl;
     }
 }
 
@@ -541,7 +538,7 @@ void recipientLogin() {
         }
     }
     else {
-        cout << "Unable to open file." << endl;
+        cout << "Error 004! Unable to open file." << endl;
     }
 }
 
@@ -550,70 +547,105 @@ void recipientLogin() {
 
 
 void recipientMenu(const string& name) {
+recipientMenu:
+
+    system("CLS");
+    header();
+
     vector<Donor> donorDatabase = loadDonorDatabase("recipients.txt");
 
-    int choice;
-    do {
+    string str_recipient_menu;
+    
+       
+
         cout << "\nMenu : \n";
         cout << "1. Access donor's Information by blood group \n";
         cout << "2. Access donors by blood group and location \n";
         cout << "3. Potential donors contact details find by giving full name \n";
-        cout << "4. Exit \n";
+        cout << "4. Back to main menu\n";
+        cout << "5. Exit \n";
         cout << "Enter your choice : ";
-        cin >> choice;
+        cin >> str_recipient_menu;
 
-        switch (choice) {
-        case 1:
-            accessBloodGroup(donorDatabase);
-            break;
-        case 2:
-            accessByBloodGroupAndLocation(donorDatabase);
-            break;
-        case 3:
-            findPotentialDonors(donorDatabase);
-            break;
-        case 4:
-            cout << "Exiting Program. \n";
-            break;
-        default:
-            cout << "Invalid choice. Please enter a number between 1 and 4. \n";
+        if ((str_recipient_menu == "1") || (str_recipient_menu == "2") || (str_recipient_menu == "3") || (str_recipient_menu == "4") || (str_recipient_menu == "5")) {
+
+            int recipient_menu = stoi(str_recipient_menu);
+
+            switch (recipient_menu) {
+            case 1:
+                accessBloodGroup(donorDatabase);
+                break;
+            case 2:
+                accessByBloodGroupAndLocation(donorDatabase);
+                break;
+            case 3:
+                findPotentialDonors(donorDatabase);
+                break;
+            case 4:
+                main();
+            case 5:
+                break;
+                    cout << "Exiting Program. \n";
+                    return;
+                break;
+            }
         }
-    } while (choice != 4);
 
-   
+        else {
+            cout << "Invalid choice. Please try again." << endl;
+            goto  recipientMenu;
+        }
+
 }
 
 void donorMenu() {
-    int choice = 0;
-    do {
+    donormenu:
+    system("CLS");
+    header();
+
+
+    string inital_donor_choice;
+    
         cout << "\nDonor Menu : \n";
         cout << "1. Procedure to donate blood\n";
         cout << "2. Benefits of blood donation\n";
         cout << "3. Manage Information\n";
-        cout << "4. Exit Program\n";
+        cout << "4. Back to main menu\n";
         cout << "Enter your choice : ";
-        cin >> choice;
+        cin >> inital_donor_choice;
 
-        switch (choice) {
-        case 1:
+        if ((inital_donor_choice == "1") || (inital_donor_choice == "2") || (inital_donor_choice == "3") || (inital_donor_choice == "4") || (inital_donor_choice == "5")) {
 
-            cout << "Procedure to donate blood.\n";
-            break;
-        case 2:
+            int choice = stoi(inital_donor_choice);
 
-            cout << "Benefits of blood donation.\n";
-            break;
-        case 3:
+            switch (choice) {
+            case 1:
 
-            cout << "Manage information.\n";
-            break;
-        case 4:
-            cout << "Exiting Program.\n";
-            break;
-        default:
-            cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+                cout << "Procedure to donate blood.\n";
+                break;
+            case 2:
+
+                cout << "Benefits of blood donation.\n";
+                break;
+            case 3:
+
+                cout << "Manage information.\n";
+                break;
+            case 4:
+                main();
+                break;
+            case 5:
+                cout << "Exiting Program. \n";
+                return;
+                break;
+            }
         }
-    } while (choice != 4);
+
+        else {
+            cout << "Invalid choice. Please try again." << endl;
+            goto  donormenu;
+        }
+    
 }
 
 void BookingSystem::bookDonationSlot() {
