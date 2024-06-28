@@ -1,0 +1,2 @@
+username1 password1 John Doe 1/1/2000 New Zealand Kiwi male none A 0223334455 yoobee@student.ac.nz 90 city road 
+harsh1 nadan1 Harsh Nadan 04/06/2005 Fiji Nz male none A 022123456 harsh.test@gmail.com 15 peek street 

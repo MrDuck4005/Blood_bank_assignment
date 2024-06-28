@@ -1,0 +1,4 @@
+error001 - infinite looping occours, typically caused by an invalid input
+error002 - donors.txt database, unable to open txt file
+Error 003 - donor register, unable to open file
+error 004 - register recipent, recipent.txt unable to open
